@@ -48,7 +48,10 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
 
     @Override
     public List<TodoResponseDto> findAllTodos() {
-        return jdbcTemplate.query("select * from todo", todoRowMapper());
+
+        String sql = "select * from todo";
+
+        return jdbcTemplate.query(sql, todoRowMapper());
     }
 
     @Override

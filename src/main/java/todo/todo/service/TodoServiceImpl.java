@@ -61,22 +61,23 @@ public class TodoServiceImpl implements TodoService{
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Wrong password!!");
         }
 
-
         return new TodoResponseDto(todos);
     }
 
     @Override
     public void deleteTodo(Long id, String pw) {
-        int deleteRow = todoRepository.deleteTodo(id, pw);
-
-        if(deleteRow == 0){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
-        }
 
         Todo todos = todoRepository.findTodoByIdOrElseThrow(id);
 
         if(!todos.getPw().equals(pw)){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Wrong password!!");
         }
+        // 먼저 선언해버리면 삭제된 후에 비밀번호 검증을 함.
+        int deleteRow = todoRepository.deleteTodo(id, pw);
+
+        if(deleteRow == 0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
     }
 }

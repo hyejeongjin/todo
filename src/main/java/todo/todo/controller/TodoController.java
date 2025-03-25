@@ -8,6 +8,7 @@ import todo.todo.dto.TodoRequestDto;
 import todo.todo.dto.TodoResponseDto;
 import todo.todo.service.TodoService;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -50,7 +51,9 @@ public class TodoController {
             @PathVariable Long id,
             @RequestBody TodoRequestDto dto){
 
+
         todoService.deleteTodo(id, dto.getPw());
+
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
