@@ -21,9 +21,9 @@ public class Todo {
     public Todo(String todo, String author, String pw, LocalDateTime created, LocalDateTime modified){
         this.todo = todo;
         this.author = author;
-        //this.pw = pw;
+        this.pw = pw;
         this.created = created;
-        //this.modified = modified;
+        this.modified = modified;
 
     }
 
