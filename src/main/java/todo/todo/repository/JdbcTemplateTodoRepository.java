@@ -66,14 +66,16 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
         return result.stream().findAny().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exists id = " + id));
     }
 
+
     @Override
-    public int updateTodo(Long id, String todo, String author) {
-        return 0;
+    public int updateTodo(Long id, String todo, String author, String pw) {
+
+        return jdbcTemplate.update("update todo set todo = ?, author = ?, modified = CURRENT_TIMESTAMP where id = ?", todo, author, id);
     }
 
     @Override
-    public int deleteTodo(Long id) {
-        return 0;
+    public int deleteTodo(Long id, String pw) {
+        return jdbcTemplate.update("delete from todo where id = ?", id);
     }
 
 

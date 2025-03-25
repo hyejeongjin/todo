@@ -1,6 +1,9 @@
 package todo.todo.service;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import todo.todo.dto.TodoRequestDto;
 import todo.todo.dto.TodoResponseDto;
 import todo.todo.entity.Todo;
@@ -8,7 +11,6 @@ import todo.todo.repository.TodoRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TodoServiceImpl implements TodoService{
@@ -29,6 +31,7 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public List<TodoResponseDto> findAllTodos() {
+
         return todoRepository.findAllTodos();
     }
 
@@ -39,13 +42,41 @@ public class TodoServiceImpl implements TodoService{
         return new TodoResponseDto(todo);
     }
 
+    @Transactional
     @Override
-    public int updateTodo(Long id, String todo, String author) {
-        return 0;
+    public TodoResponseDto updateTodo(Long id, String todo, String author, String pw) {
+        if(todo == null || author == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The title and content are required values.");
+        }
+
+        int updatedRow = todoRepository.updateTodo(id, todo, author, pw);
+
+        if(updatedRow == 0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
+        Todo todos = todoRepository.findTodoByIdOrElseThrow(id);
+
+        if(!todos.getPw().equals(pw)){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Wrong password!!");
+        }
+
+
+        return new TodoResponseDto(todos);
     }
 
     @Override
-    public int deleteTodo(Long id) {
-        return 0;
+    public void deleteTodo(Long id, String pw) {
+        int deleteRow = todoRepository.deleteTodo(id, pw);
+
+        if(deleteRow == 0){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
+        Todo todos = todoRepository.findTodoByIdOrElseThrow(id);
+
+        if(!todos.getPw().equals(pw)){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Wrong password!!");
+        }
     }
 }

@@ -17,7 +17,7 @@ public interface TodoRepository {
 
     Todo findTodoByIdOrElseThrow(Long id);
 
-    int updateTodo(Long id, String todo, String author);
+    int updateTodo(Long id, String todo, String author, String pw);
 
-    int deleteTodo(Long id);
+    int deleteTodo(Long id, String pw);
 }
