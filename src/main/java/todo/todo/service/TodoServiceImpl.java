@@ -8,6 +8,7 @@ import todo.todo.repository.TodoRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoServiceImpl implements TodoService{
@@ -31,7 +32,6 @@ public class TodoServiceImpl implements TodoService{
         return todoRepository.findAllTodos();
     }
 
-    // 원인을 모르겠음.
     @Override
     public TodoResponseDto findTodoById(Long id) {
         Todo todo = todoRepository.findTodoByIdOrElseThrow(id);

@@ -62,6 +62,7 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
     public Todo findTodoByIdOrElseThrow(Long id) {
         List<Todo> result = jdbcTemplate.query("select * from todo where id = ?", todoRowMapperV2(), id);
 
+        // Optional<Todo> 대신 exception 던지는 용으로 사용. 그래서 Optional<Todo>로 할 필요가 없음.
         return result.stream().findAny().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exists id = " + id));
     }
 
@@ -97,6 +98,7 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
             @Override
             public Todo mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return new Todo(
+                        rs.getLong("id"),
                         rs.getString("todo"),
                         rs.getString("author"),
                         rs.getString("pw"),

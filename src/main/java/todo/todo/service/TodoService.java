@@ -2,8 +2,10 @@ package todo.todo.service;
 
 import todo.todo.dto.TodoRequestDto;
 import todo.todo.dto.TodoResponseDto;
+import todo.todo.entity.Todo;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TodoService {
 
