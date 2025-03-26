@@ -3,7 +3,7 @@ package todo.todo.dto;
 import lombok.Getter;
 import todo.todo.entity.Todo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 public class TodoResponseDto {
@@ -12,8 +12,8 @@ public class TodoResponseDto {
     private final String todo;
     private final String author;
     private String pw;
-    private final LocalDateTime created;
-    private LocalDateTime modified;
+    private final LocalDate created;
+    private LocalDate modified;
 
     public TodoResponseDto(Todo todo){
         this.id = todo.getId();
@@ -24,7 +24,7 @@ public class TodoResponseDto {
         this.modified = todo.getModified();
     }
 
-    public TodoResponseDto(Long id, String todo, String author, LocalDateTime created, LocalDateTime modified) {
+    public TodoResponseDto(Long id, String todo, String author, LocalDate created, LocalDate modified) {
         this.id = id;
         this.todo = todo;
         this.author = author;

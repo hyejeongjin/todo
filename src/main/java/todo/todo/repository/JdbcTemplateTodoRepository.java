@@ -61,22 +61,15 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
         StringBuilder sql = new StringBuilder("select id, todo, author, created, modified from todo where 1=1");
         List<Object> list = new ArrayList<>();
 
-        // 둘 다 충족하는 경우
-        if(author != null && !author.isEmpty() && modified != null){
-            sql.append(" and author = ? and modified = ? ");
+        if(author != null  && !author.isEmpty()){
+            sql.append(" and author = ?");
             list.add(author);
-            list.add(modified);
-
-        // 둘 중에 하나 충족하는 경우
-        }else if(author != null && !author.isEmpty() || modified != null){
-            if(author != null && !author.isEmpty()){
-                sql.append(" and author = ?");
-                list.add(author);
-            }else if(modified != null){
-                sql.append(" and modified = ?");
-                list.add(modified);
-            }
         }
+        if(modified != null){
+            sql.append(" and DATE(modified) = ?");
+            list.add(modified);
+        }
+
         sql.append(" order by modified desc");
 
         return jdbcTemplate.query(sql.toString(), list.toArray(), todoRowMapper());
@@ -120,8 +113,8 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
                         rs.getLong("id"),
                         rs.getString("todo"),
                         rs.getString("author"),
-                        rs.getTimestamp("created").toLocalDateTime(),
-                        rs.getTimestamp("modified").toLocalDateTime()
+                        rs.getDate("created").toLocalDate(),
+                        rs.getDate("modified").toLocalDate()
                 );
             }
         };
@@ -136,8 +129,8 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
                         rs.getString("todo"),
                         rs.getString("author"),
                         rs.getString("pw"),
-                        rs.getTimestamp("created").toLocalDateTime(),
-                        rs.getTimestamp("modified").toLocalDateTime()
+                        rs.getDate("created").toLocalDate(),
+                        rs.getDate("modified").toLocalDate()
                 );
             }
         };

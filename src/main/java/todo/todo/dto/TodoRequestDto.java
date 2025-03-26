@@ -2,7 +2,7 @@ package todo.todo.dto;
 
 import lombok.Getter;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Getter
 public class TodoRequestDto {
@@ -10,7 +10,7 @@ public class TodoRequestDto {
     private String todo;
     private String author;
     private String pw;
-    private Timestamp created;
-    private Timestamp modified;
+    private LocalDate created;
+    private LocalDate modified;
 
 }

@@ -26,7 +26,7 @@ public class TodoServiceImpl implements TodoService{
     @Override
     public TodoResponseDto saveTodo(TodoRequestDto dto) {
 
-        Todo todo = new Todo(dto.getTodo(), dto.getAuthor(), dto.getPw(), LocalDateTime.now(), LocalDateTime.now());
+        Todo todo = new Todo(dto.getTodo(), dto.getAuthor(), dto.getPw(), LocalDate.now(), LocalDate.now());
 
         return todoRepository.saveTodo(todo);
     }

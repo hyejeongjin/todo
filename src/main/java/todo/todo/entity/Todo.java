@@ -5,6 +5,7 @@ import lombok.Getter;
 import todo.todo.dto.TodoRequestDto;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,10 +16,10 @@ public class Todo {
     private String todo;
     private String author;
     private String pw;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private LocalDate created;
+    private LocalDate modified;
 
-    public Todo(String todo, String author, String pw, LocalDateTime created, LocalDateTime modified){
+    public Todo(String todo, String author, String pw, LocalDate created, LocalDate modified){
         this.todo = todo;
         this.author = author;
         this.pw = pw;
