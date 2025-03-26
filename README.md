@@ -13,7 +13,7 @@
 
 **일정 관리 API 명세서**
 
-| 기능         | Method | URL              | Path Var  | request body | response                                                                                                   | 상태코드 |
+| 기능         | Method | URL              | Path Variable  | request body | response                                                                                                   | 상태코드 |
 |-------------|--------|-----------------|-----------|--------------|------------------------------------------------------------------------------------------------------------|----------|
 | 일정 등록    | POST   | /api/todos      | X         | ``` { "todo": "할 일", "author": "작성자", "pw": "비밀번호", "created": "작성일", "modified": "수정일" }``` | ```  { "id": 일정 Id, "todo": "할 일", "author": "작성자", "pw": "비밀번호", "created": "작성일", "modified": "수정일" }``` | 201: CREATED  <br> 200: OK |
 | 선택 일정 조회 | GET    | /api/todos/{id} | id(Long)  | X            | ``` { "id": 일정 Id, "todo": "할 일", "author": "작성자", "pw": "비밀번호", "created": "작성일", "modified": "수정일" }```  | 200: OK  <br> 404: NOT FOUND |
@@ -23,16 +23,34 @@
 
 
   <br>
+  
   **ERD 작성**
 
   ![Image](https://github.com/user-attachments/assets/032cd5d7-d0d4-4aa3-b1db-c5de06836969)
   ![Image](https://github.com/user-attachments/assets/9b2f9d64-3ece-47a5-9b7d-ef7842343a2c)
 
+  **SQL 작성하기**
+  ```
+  CREATE TABLE todo
+(
+    id     BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '메모 식별자',
+    todo	    VARCHAR(2000)	NOT NULL COMMENT '할일',
+    author	    VARCHAR(20)	NOT NULL COMMENT '작성자',
+    pw	VARCHAR(10)	NOT NULL COMMENT '비밀번호',
+    created	    DATETIME DEFAULT CURRENT_TIMESTAMP	NOT NULL COMMENT '작성일',
+    modified	DATETIME DEFAULT CURRENT_TIMESTAMP	NOT NULL COMMENT '수정일'
+);
+  ```
 
-### Lv 2. 메뉴를 클래스로 관리하기 ###
-* `MenuItem` 클래스 생성하기.
-* `main` 함수에서 `MenuItem` 클래스를 활용하여 카페 메뉴 출력.
-  <br>
+### Lv 1. 일정 생성 및 조회  `필수` ###
+
+- **일정 생성(일정 작성하기)**
+    - [ ]  일정 생성 시, 포함되어야할 데이터
+        - [ ]  `할일`, `작성자명`, `비밀번호`, `작성/수정일`을 저장
+        - [ ]  `작성/수정일`은 날짜와 시간을 모두 포함한 형태
+    - [ ]  각 일정의 고유 식별자(ID)를 자동으로 생성하여 관리
+    - [ ]  최초 입력 시, 수정일은 작성일과 동일
+    - **View를 생각해보자면..! (화면 구현하는 것은 요구사항이 아닙니다!)**
 
 ### Lv 3. 순서 제어를 클래스로 관리하기 ###
 * `Kiosk` 클래스 생성하기.
