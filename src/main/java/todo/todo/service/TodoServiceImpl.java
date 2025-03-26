@@ -9,6 +9,8 @@ import todo.todo.dto.TodoResponseDto;
 import todo.todo.entity.Todo;
 import todo.todo.repository.TodoRepository;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,10 +31,16 @@ public class TodoServiceImpl implements TodoService{
         return todoRepository.saveTodo(todo);
     }
 
-    @Override
+    /*@Override
     public List<TodoResponseDto> findAllTodos() {
 
         return todoRepository.findAllTodos();
+    }*/
+
+    @Override
+    public List<TodoResponseDto> findAllTodos(String author, LocalDate modified) {
+
+        return todoRepository.findAllTodos(author, modified);
     }
 
     @Override

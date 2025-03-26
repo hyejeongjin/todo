@@ -24,11 +24,12 @@ public class TodoResponseDto {
         this.modified = todo.getModified();
     }
 
-    public TodoResponseDto(Long id, String todo, String author, LocalDateTime created) {
+    public TodoResponseDto(Long id, String todo, String author, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.todo = todo;
         this.author = author;
         this.created = created;
+        this.modified = modified;
     }
 
 }

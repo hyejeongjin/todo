@@ -13,11 +13,11 @@ import todo.todo.entity.Todo;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
 
 @Repository
 public class JdbcTemplateTodoRepository implements TodoRepository{
@@ -43,15 +43,43 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
 
-        return new TodoResponseDto(key.longValue(), todo.getTodo(), todo.getAuthor(), todo.getCreated());
+        return new TodoResponseDto(key.longValue(), todo.getTodo(), todo.getAuthor(), todo.getCreated(), todo.getModified());
     }
 
-    @Override
+    /*@Override
     public List<TodoResponseDto> findAllTodos() {
 
-        String sql = "select * from todo";
+        String sql = "select * from todo order by modified desc";
+
 
         return jdbcTemplate.query(sql, todoRowMapper());
+    }*/
+
+    @Override
+    public List<TodoResponseDto> findAllTodos(String author, LocalDate modified) {
+
+        StringBuilder sql = new StringBuilder("select id, todo, author, created, modified from todo where 1=1");
+        List<Object> list = new ArrayList<>();
+
+        // 둘 다 충족하는 경우
+        if(author != null && !author.isEmpty() && modified != null){
+            sql.append(" and author = ? and modified = ? ");
+            list.add(author);
+            list.add(modified);
+
+        // 둘 중에 하나 충족하는 경우
+        }else if(author != null && !author.isEmpty() || modified != null){
+            if(author != null && !author.isEmpty()){
+                sql.append(" and author = ?");
+                list.add(author);
+            }else if(modified != null){
+                sql.append(" and modified = ?");
+                list.add(modified);
+            }
+        }
+        sql.append(" order by modified desc");
+
+        return jdbcTemplate.query(sql.toString(), list.toArray(), todoRowMapper());
     }
 
     @Override
@@ -92,7 +120,8 @@ public class JdbcTemplateTodoRepository implements TodoRepository{
                         rs.getLong("id"),
                         rs.getString("todo"),
                         rs.getString("author"),
-                        rs.getTimestamp("created").toLocalDateTime()
+                        rs.getTimestamp("created").toLocalDateTime(),
+                        rs.getTimestamp("modified").toLocalDateTime()
                 );
             }
         };

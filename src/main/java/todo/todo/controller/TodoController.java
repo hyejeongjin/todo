@@ -1,6 +1,7 @@
 package todo.todo.controller;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,9 @@ import todo.todo.dto.TodoRequestDto;
 import todo.todo.dto.TodoResponseDto;
 import todo.todo.service.TodoService;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -27,9 +31,16 @@ public class TodoController {
         return new ResponseEntity<>(todoService.saveTodo(dto), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    /*@GetMapping
     public List<TodoResponseDto> findAllTodos(){
         return todoService.findAllTodos();
+    }*/
+
+    @GetMapping
+    public List<TodoResponseDto> findAllTodos(@RequestParam(required=false) String author,
+                                              @RequestParam(required=false) @DateTimeFormat(pattern ="yyyy-MM-dd") LocalDate modified){
+
+        return todoService.findAllTodos(author, modified);
     }
 
     @GetMapping("/{id}")
