@@ -13,7 +13,6 @@ public interface TodoRepository {
 
     TodoResponseDto saveTodo(Todo todo);
 
-    // List<TodoResponseDto> findAllTodos();
 
     List<TodoResponseDto> findAllTodos(String author, LocalDate modified);
 

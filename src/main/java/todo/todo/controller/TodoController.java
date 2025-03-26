@@ -31,10 +31,6 @@ public class TodoController {
         return new ResponseEntity<>(todoService.saveTodo(dto), HttpStatus.CREATED);
     }
 
-    /*@GetMapping
-    public List<TodoResponseDto> findAllTodos(){
-        return todoService.findAllTodos();
-    }*/
 
     @GetMapping
     public List<TodoResponseDto> findAllTodos(@RequestParam(required=false) String author,

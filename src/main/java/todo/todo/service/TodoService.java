@@ -10,7 +10,6 @@ import java.util.List;
 public interface TodoService {
 
     TodoResponseDto saveTodo(TodoRequestDto dto);
-    // List<TodoResponseDto> findAllTodos();
     List<TodoResponseDto> findAllTodos(String author, LocalDate modified);
     TodoResponseDto findTodoById(Long id);
     TodoResponseDto updateTodo(Long id, String todo, String author, String pw);

@@ -31,12 +31,6 @@ public class TodoServiceImpl implements TodoService{
         return todoRepository.saveTodo(todo);
     }
 
-    /*@Override
-    public List<TodoResponseDto> findAllTodos() {
-
-        return todoRepository.findAllTodos();
-    }*/
-
     @Override
     public List<TodoResponseDto> findAllTodos(String author, LocalDate modified) {
 
