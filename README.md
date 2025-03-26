@@ -11,7 +11,7 @@
 * ERD 작성하기.
 * SQL 작성하기.
 
-# 일정 관리 API 명세서
+**일정 관리 API 명세서**
 
 | 기능         | Method | URL              | Path Var  | request body | response                                                                                                   | 상태코드 |
 |-------------|--------|-----------------|-----------|--------------|------------------------------------------------------------------------------------------------------------|----------|
@@ -23,9 +23,10 @@
 
 
   <br>
-  * ERD 작성하기
+  **ERD 작성**
 
   ![Image](https://github.com/user-attachments/assets/032cd5d7-d0d4-4aa3-b1db-c5de06836969)
+  ![Image](https://github.com/user-attachments/assets/9b2f9d64-3ece-47a5-9b7d-ef7842343a2c)
 
 
 ### Lv 2. 메뉴를 클래스로 관리하기 ###
