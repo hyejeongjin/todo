@@ -24,6 +24,9 @@
 
   <br>
 
+  * ERD 작성하기
+  ![Image](https://github.com/user-attachments/assets/032cd5d7-d0d4-4aa3-b1db-c5de06836969)
+
 
 ### Lv 2. 메뉴를 클래스로 관리하기 ###
 * `MenuItem` 클래스 생성하기.
