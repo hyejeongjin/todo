@@ -27,8 +27,8 @@
   
   **2. ERD 작성**
 
-  ![Image](https://github.com/user-attachments/assets/032cd5d7-d0d4-4aa3-b1db-c5de06836969)
-  ![Image](https://github.com/user-attachments/assets/9b2f9d64-3ece-47a5-9b7d-ef7842343a2c)
+<img src="https://github.com/user-attachments/assets/032cd5d7-d0d4-4aa3-b1db-c5de06836969" width="400" height="200"/>
+<img src="https://github.com/user-attachments/assets/9b2f9d64-3ece-47a5-9b7d-ef7842343a2c" width="550" height="300"/>
 
 <br><br>
 
@@ -45,7 +45,7 @@
 );
   ```
 
-<br><br>
+<br>
 
 ### Lv 1. 일정 생성 및 조회 ###
 
@@ -67,7 +67,7 @@
   * 선택한 일정 단건의 정보를 조회할 수 있습니다.
   * 일정의 고유 식별자(ID)를 사용하여 조회합니다.
 
-<br><br>
+<br>
       
 ### Lv 2. 일정 수정 및 삭제 ###
 **1. 선택한 일정 수정**
@@ -83,4 +83,28 @@
 <br>
 
 
+## 📆 2. 실행화면
 
+* 생성
+<img src="https://github.com/user-attachments/assets/c23abec7-7e35-465f-abae-071b17bfb863" width="500" height="400"/>
+<br><br>
+
+* 목록 조건 조회
+<img src="https://github.com/user-attachments/assets/40006af1-96c5-4dd4-9bc4-d07806e4ca40" width="500" height="400"/>
+<br><br>
+
+* id로 조회
+<img src="https://github.com/user-attachments/assets/df667aa1-17b2-48b9-8484-1930489a3a1f" width="500" height="400"/>
+<br><br>
+
+* 수정
+<img src="https://github.com/user-attachments/assets/aaa42c72-4e9d-42b8-bafa-f59f8e9c594e" width="500" height="400"/>
+<br><br>
+
+* 삭제(비밀번호 일치 시)
+<img src="https://github.com/user-attachments/assets/a5fec568-19d8-4e7a-b74c-6ae34102cdd0" width="500" height="400"/>
+<br><br>
+
+* 삭제(비밀번호 불일치 시)
+<img src="https://github.com/user-attachments/assets/6146243b-0e0e-4182-abba-7dff32132c09" width="500" height="400"/>
+<br><br>
